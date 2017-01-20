@@ -1,0 +1,26 @@
+{
+  "name": "npm-own",
+  "version": "0.0.1",
+  "description": "push package.json authors to npm owners",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mixmix/npm-own.git"
+  },
+  "keywords": [
+    "npm",
+    "maintenance"
+  ],
+  "author": "mixmix",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mixmix/npm-own/issues"
+  },
+  "homepage": "https://github.com/mixmix/npm-own#readme",
+  "dependencies": {
+    "npm": "^4.1.1"
+  }
+}
