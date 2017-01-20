@@ -42,8 +42,7 @@ function loadMaintainers () {
      )
      .filter(Boolean)
 
-  if (!maintainers)
-    throw new Error("there were no maintainers with paresable usernames")
+  if (!m) throw new Error("there were no maintainers with paresable usernames")
 
   return m
 }
