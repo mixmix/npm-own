@@ -5,8 +5,6 @@ const parseAuthors = require('parse-authors')
 
 
 module.exports = function addOwners () {
-  if (!maintainers)
-    throw new Error("there were no maintainers with paresable usernames")
 
   npm.load({global: false}, (err, _) => {
     if (err) console.error(err)
@@ -37,12 +35,17 @@ module.exports = function addOwners () {
 function loadMaintainers () {
   const package = require(path.join(npm.localPrefix, 'package.json'))
 
-  return package.maintainers
+  const m = package.maintainers
     .map(m => typeof m === 'string'
       ? parseAuthors(m)[0].name
       : m.name
      )
      .filter(Boolean)
+
+  if (!maintainers)
+    throw new Error("there were no maintainers with paresable usernames")
+
+  return m
 }
 
 function isMissingFrom (arr) {
