@@ -1,14 +1,7 @@
 const npm = require('npm')
+const path = require('path')
 const parallel = require('run-parallel')
 const parseAuthors = require('parse-authors')
-const package = require('./package.json')
-
-const maintainers = package.maintainers
-  .map(m => typeof m === 'string'
-    ? parseAuthors(m)[0].name
-    : m.name
-   )
-   .filter(Boolean)
 
 
 module.exports = function addOwners () {
@@ -21,6 +14,7 @@ module.exports = function addOwners () {
     npm.commands.owner(['ls'], (err, owners) => {
       if (err) console.error(err)
 
+      const maintainers = loadMaintainers()
       const ownerNames = owners.map(o => o.name)
       const missingFromNpm = maintainers.filter(isMissingFrom(ownerNames))
 
@@ -38,6 +32,17 @@ module.exports = function addOwners () {
       )
     })
   })
+}
+
+function loadMaintainers () {
+  const package = require(path.join(npm.localPrefix, 'package.json'))
+
+  return package.maintainers
+    .map(m => typeof m === 'string'
+      ? parseAuthors(m)[0].name
+      : m.name
+     )
+     .filter(Boolean)
 }
 
 function isMissingFrom (arr) {
