@@ -1,7 +1,8 @@
 {
   "name": "npm-own",
   "version": "0.0.1",
-  "description": "push package.json authors to npm owners",
+  "description": "easily promote package.json maintainers to npm owners",
+  "bin": "bin.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,13 +15,18 @@
     "npm",
     "maintenance"
   ],
-  "author": "mixmix",
+  "author": "mixmix <whimful@gmail.com>",
+  "maintainers": [
+    "ahdinosaur <mikey@enspiral.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mixmix/npm-own/issues"
   },
   "homepage": "https://github.com/mixmix/npm-own#readme",
   "dependencies": {
-    "npm": "^4.1.1"
+    "npm": "^4.1.1",
+    "parse-authors": "^0.2.4",
+    "run-parallel": "^1.1.6"
   }
 }
