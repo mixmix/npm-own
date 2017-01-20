@@ -10,7 +10,7 @@ This module reads your `package.json` **`maintainers`** and adds them as owners 
 
 ```json
 {
-  "author: "mixmix <whimful@gmail.com>",
+  "author": "mixmix <whimful@gmail.com>",
   "maintainers": [
     "ahdinosaur <mikey@enspiral.com>",
     {
