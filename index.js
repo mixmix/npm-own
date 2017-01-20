@@ -12,13 +12,10 @@ module.exports = function addOwners () {
     npm.commands.owner(['ls'], (err, owners) => {
       if (err) console.error(err)
 
-      const maintainers = loadMaintainers()
       const ownerNames = owners.map(o => o.name)
+
+      const maintainers = loadMaintainers()
       const missingFromNpm = maintainers.filter(isMissingFrom(ownerNames))
-
-
-      console.log('prefix', npm.config.get('global'), npm.globalPrefix, npm.localPrefix)
-      console.log({ ownerNames, missingFromNpm})
 
       parallel(
         missingFromNpm.map(m => (cb) =>  npm.commands.owner(['add', m], cb) ),
